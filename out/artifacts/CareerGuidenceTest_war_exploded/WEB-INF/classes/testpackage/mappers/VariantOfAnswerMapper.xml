@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testpackage.mappers.VariantOfAnswerMapper">
+
+    <resultMap id="variantOfAnswer" type="testpackage.dao.type.VariantOfAnswer">
+        <id column="id" property="id" />
+        <result column="id_question" property="id_question" />
+        <result column="name" property="name" />
+        <result column="flag" property="flag" />
+        <result column="points" property="points" />
+    </resultMap>
+
+    <select id="getVariantOfAnswerById" resultMap="variantOfAnswer">
+        select * from variantsOfAnswers WHERE id=#{id}
+    </select>
+
+    <select id="getVariantOfAnswerByName" resultMap="variantOfAnswer">
+        select * from variantsOfAnswers WHERE name = #{name}
+    </select>
+
+    <insert id="insertVariantOfAnswer">
+        insert into variantsOfAnswers(id, id_question, name, flag, points) values
+              ( #{id}, #{id_question}, #{name}, #{flag}, #{points})
+    </insert>
+
+    <update id="updateVariantOfAnswer">
+        update variantsOfAnswers set
+          id_question = #{id_questio},
+          name = #{name},
+          flag = #{flag},
+          points = #{points}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVariantOfAnswerById">
+        delete from variantsOfAnswers where id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="variantOfAnswer">
+        select * from variantsOfAnswers
+    </select>
+
+</mapper>

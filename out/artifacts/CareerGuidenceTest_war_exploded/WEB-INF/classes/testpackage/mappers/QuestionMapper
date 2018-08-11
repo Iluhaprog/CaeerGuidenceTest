@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testpackage.mappers.QuestionMapper">
+
+    <resultMap id="question" type="testpackage.dao.type.Question">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <select id="getQuestionById" resultMap="question">
+        select * from questions WHERE id=#{id}
+    </select>
+
+    <select id="getQuestionByName" resultMap="question">
+        select * from questions WHERE name = #{name}
+    </select>
+
+    <insert id="insertQuestion">
+        insert into questions(id, name) values
+              ( #{id}, #{name})
+    </insert>
+
+    <update id="updateQuestion">
+        update questions set
+          name = #{name},
+        where id = #{id}
+    </update>
+
+    <delete id="deleteQuestionById">
+        delete from questions where id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="question">
+        select * from questions
+    </select>
+
+</mapper>

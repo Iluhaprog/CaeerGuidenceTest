@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testpackage.mappers.CategoryMapper">
+
+    <resultMap id="category" type="testpackage.dao.type.Category">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <select id="getCategoryById" resultMap="category">
+        select * from categoryes WHERE id=#{id}
+    </select>
+
+    <select id="getCategoryByName" resultMap="category">
+        select * from categoryes WHERE name = #{name}
+    </select>
+
+    <insert id="insertCategory">
+        insert into categoryes(id, name) values
+              ( #{id}, #{name})
+    </insert>
+
+    <update id="updateCategor">
+        update categoryes set
+           name = #{name},
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCategoryById">
+        delete from categoryes where id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="category">
+        select * from categoryes
+    </select>
+
+</mapper>

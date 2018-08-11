@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="testpackage.mappers.AnswerMapper">
+
+    <resultMap id="answer" type="testpackage.dao.type.Answer">
+        <id column="id" property="id" />
+        <result column="id_user" property="id_user" />
+        <result column="name" property="name" />
+        <result column="flag" property="flag" />
+        <result column="points" property="points" />
+    </resultMap>
+
+    <select id="getAnswerById" resultMap="answer">
+        select * from answers WHERE id=#{id}
+    </select>
+
+    <select id="getAnswerByName" resultMap="answer">
+        select * from answers WHERE name = #{name}
+    </select>
+
+    <insert id="insertAnswer">
+        insert into answers(id, id_user, name, flag, points) values
+              ( #{id}, #{id_user}, #{name}, #{flag}, #{points})
+    </insert>
+
+    <update id="updateAnswer">
+        update answers set
+          id_user = #{id_user},
+          name = #{name},
+          flag = #{flag},
+          points = #{points}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAnswerById">
+        delete from answers where id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="answer">
+        select * from answers
+    </select>
+
+</mapper>
